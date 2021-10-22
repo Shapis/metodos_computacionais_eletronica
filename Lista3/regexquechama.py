@@ -16,7 +16,7 @@ class Queue:  # FIFO => First In, First Out
         if self.len_queue != 0:
             return self.queue[0]
 
-    def top(self):
+    def back(self):
         if self.len_queue != 0:
             return self.queue[-1]
 
@@ -37,7 +37,7 @@ for item in _lista:
     _q.enqueue(item)
 
 
-if (_q.top() == _q.front()):
+if (_q.back() == _q.front()):
     print("VERDADE")
 else:
     print("FALSO")
