@@ -124,6 +124,14 @@ class CircularLinkedList:
             aux = aux.getNext()
         return None
 
+    def searchId(self, id):
+        aux = self.head
+        for i in range(self.getLength()):
+            if aux.getLabel().id == id:
+                return aux
+            aux = aux.getNext()
+        return None
+
     # show
     def show(self):
         if self.empty() != True:  # not self.empty() #self.empty() != True
@@ -144,17 +152,17 @@ class CircularLinkedList:
                 aux = aux.getNext()
             aux = self.head
 
-    def removeDuplicates(self):
-        main = self.head
-        for i in range(self.getLength()):
-            aux = main.getLabel()
-            for k in range(i):
-                aux.getNext()
-            for j in range(self.getLength() - 1 - i):
-                if main.getLabel().id == aux.getLabel().id:
+    # def removeDuplicates(self):
+    #     main = self.head
+    #     for i in range(self.getLength()):
+    #         aux = main.getLabel()
+    #         for k in range(i):
+    #             aux.getNext()
+    #         for j in range(self.getLength() - 1 - i):
+    #             if main.getLabel().id == aux.getLabel().id:
 
-                aux = aux.getNext()
-            aux = self.head
+    #             aux = aux.getNext()
+    #         aux = self.head
 
     def copy(self):
         newList = CircularLinkedList()
@@ -168,7 +176,9 @@ class CircularLinkedList:
         aux = self.head
         for i in range(self.getLength()):
             for j in range(self.getLength() - 1):
-                if min(aux.getLabel().name, aux.getNext().getLabel().name) == aux.getNext().getLabel().name:
+                if (aux.getLabel().name.upper() == aux.getNext().getLabel().name.upper()):
+                    pass
+                elif min(aux.getLabel().name.upper(), aux.getNext().getLabel().name.upper()) == aux.getNext().getLabel().name.upper():
                     tempName = aux.getLabel().name
                     tempId = aux.getLabel().id
                     tempAge = aux.getLabel().age
@@ -236,16 +246,14 @@ for i in range(N):
     for j in range(len(numbers)):
         numbers[j] = float(numbers[j])
 
-    myPerson = Person(int(numbers[0]), nome,
-                      int(numbers[1]), int(numbers[2]), numbers[3])
-    LSEC.append(myPerson)
+    if (LSEC.searchId(int(numbers[0])) == None):
+        LSEC.append(Person(int(numbers[0]), nome,
+                    int(numbers[1]), int(numbers[2]), numbers[3]))
 
 
 copia = LSEC.copy()
-copia.removeRepeats()
 copia.orderAlphabetically()
 copia.printPerson()
-
 
 # for i in range(N):
 #     LSEC1.append(X[i])
