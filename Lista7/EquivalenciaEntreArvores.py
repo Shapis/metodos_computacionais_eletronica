@@ -161,13 +161,13 @@ class BSTNode:
 try:
     root = BSTNode()
     altroot = BSTNode()
-    t = input()
-
+    t = int(input())
     if t == 0:
-        print("Nao existem arvores")
-        temp = input()
+        temp = int(input())
         if t == temp:
             print("True")
+        else:
+            print("False")
     lista1 = list(map(int, input().split()))
     input()
     lista2 = list(map(int, input().split()))
@@ -177,4 +177,4 @@ try:
         altroot.insert(v)
     print(root.compareTree(altroot))
 except:
-    print("False")
+    pass
