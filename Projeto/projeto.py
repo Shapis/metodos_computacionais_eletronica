@@ -125,14 +125,6 @@ class SimpleLinkedList:
         self.getIndex(index1).setData(self.getIndex(index2).getData())
         self.getIndex(index2).setData(temp)
 
-    def insertionSort(self, lista):
-        for i in range(1, self.len):
-            for j in range(i, 0, -1):
-                if lista.getIndex(j).getData() < lista.getIndex(j-1).getData():
-                    lista.swap(j, j-1)
-                else:
-                    break
-
 
 class Sort:
     def bubbleSort(self, lista):
@@ -166,6 +158,15 @@ class Sort:
                     break
         return lista
 
+    def selectionSort(self, lista):
+        for i in range(lista.len - 1):
+            min = i
+            for j in range(i + 1, lista.len):
+                if lista.getIndex(j).getData() < lista.getIndex(min).getData():
+                    min = j
+            lista.swap(i, min)   # troca os valores
+        return lista
+
 
 sll = SimpleLinkedList()
 
@@ -176,10 +177,9 @@ for v in lista:
 
 sll.show()
 
-# sll.insertionSort(sll)
-
 mySort = Sort()
 
-sll = mySort.insertionSort(sll)
-
-sll.show()
+mySort.bubbleSort(sll.copy()).show()
+mySort.shellSort(sll.copy()).show()
+mySort.insertionSort(sll.copy()).show()
+mySort.selectionSort(sll.copy()).show()
