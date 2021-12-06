@@ -2,7 +2,6 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-        self.previous = None
 
     def setData(self, data):
         self.data = data
@@ -15,12 +14,6 @@ class Node:
 
     def setNext(self, next):
         self.next = next
-
-    def getPrevious(self):
-        return self.previous
-
-    def setPrevious(self, previous):
-        self.previous = previous
 
 
 class SimpleLinkedList:
@@ -50,6 +43,14 @@ class SimpleLinkedList:
                 aux = aux.getNext()
             aux.setNext(node)
         self.len += 1
+
+    def getIndex(self, index):
+        if index < 0 or index >= self.len:
+            return None
+        aux = self.head
+        for i in range(index):
+            aux = aux.getNext()
+        return aux
 
     def insertIndex(self, index, data):
         if index < 0 or index > self.len:
@@ -119,19 +120,18 @@ class SimpleLinkedList:
             aux = next
         self.head = prev
 
-    def swapNodes(self, node1, node2):
-        aux = node1.getNext()
-        node1.setNext(node2.getNext())
-        node2.setNext(aux)
+    def swap(self, index1, index2):
+        temp = self.getIndex(index1).getData()
+        self.getIndex(index1).setData(self.getIndex(index2).getData())
+        self.getIndex(index2).setData(temp)
 
-    def insertionSort(self):
-        aux = self.head
-        while aux.getNext() is not None:
-            aux2 = aux.getNext()
-            while aux2.getData() < aux.getData():
-                self.swapNodes(aux, aux2)
-                aux2 = aux2.getNext()
-            aux = aux.getNext()
+    def insertionSort(self, lista):
+        for i in range(1, self.len):
+            for j in range(i, 0, -1):
+                if lista.getIndex(j).getData() < lista.getIndex(j-1).getData():
+                    lista.swap(j, j-1)
+                else:
+                    break
 
 
 class Sort:
@@ -167,10 +167,10 @@ for v in lista:
 
 sll.show()
 
-# sll.insertionSort()
+sll.insertionSort(sll)
 
-mySort = Sort()
+# mySort = Sort()
 
-sll = mySort.bubbleSort(sll)
+# sll = mySort.bubbleSort(sll)
 
 sll.show()
