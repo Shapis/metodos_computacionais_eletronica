@@ -157,6 +157,15 @@ class Sort:
             aux = next
         return lista
 
+    def insertionSort(self, lista):
+        for i in range(1, lista.len):
+            for j in range(i, 0, -1):
+                if lista.getIndex(j).getData() < lista.getIndex(j-1).getData():
+                    lista.swap(j, j-1)
+                else:
+                    break
+        return lista
+
 
 sll = SimpleLinkedList()
 
@@ -167,10 +176,10 @@ for v in lista:
 
 sll.show()
 
-sll.insertionSort(sll)
+# sll.insertionSort(sll)
 
-# mySort = Sort()
+mySort = Sort()
 
-# sll = mySort.bubbleSort(sll)
+sll = mySort.insertionSort(sll)
 
 sll.show()
