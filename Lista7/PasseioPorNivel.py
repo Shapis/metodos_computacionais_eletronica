@@ -102,6 +102,17 @@ class BSTNode:
                 current = current.right
         return vals
 
+    def traverseByLevel(self, vals):
+        queue = [self]
+        while queue:
+            node = queue.pop(0)
+            vals.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        return vals
+
     def postorder(self, vals):
         if self.left is not None:
             self.left.postorder(vals)
@@ -116,6 +127,8 @@ root = BSTNode()
 lista = list(map(int, input().split()))
 for v in lista:
     root.insert(v)
-listaOrdenada = root.inOrderNonRecursive([])
+
+# print(root.traverseByLevel([]))
+listaOrdenada = root.traverseByLevel([])
 for v in listaOrdenada:
     print(v, end=' ')
